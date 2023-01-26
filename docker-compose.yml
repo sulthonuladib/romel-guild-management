@@ -5,8 +5,8 @@ services:
     image: postgres:13.5
     restart: always
     environment:
-      - POSTGRES_USER=sulthonuladib
-      - POSTGRES_PASSWORD=Bedokkok11,.
+      - POSTGRES_USER=username
+      - POSTGRES_PASSWORD=password
     volumes:
       - postgres:/var/lib/postgresql/data
     ports:
@@ -14,4 +14,4 @@ services:
 
 
 volumes:
-  postgres
+  postgres:
