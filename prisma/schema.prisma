@@ -9,3 +9,40 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Job {
+  id         Int          @id @default(autoincrement())
+  name       String       @unique
+  build_type JobBuildType @default(TAKABUR)
+  player     Player?      @relation(fields: [playerId], references: [id])
+  playerId   Int?
+}
+
+enum JobList {
+  NOVICE
+  SPIRIT_WHISPERER
+  RUNEMASTER
+  DIVINE_AVENGER
+  ARCANE_MASTER
+  CHRONOMANCER
+  BLADE_SOUL
+  PHANTOM_DANCE
+}
+
+enum JobBuildType {
+  TAKABUR
+  DPS_SKILL
+  DPS_AA
+  TANK
+  BUFFER
+  DEBUFFER
+  SUPPORT
+}
+
+model Player {
+  id           Int     @id @default(autoincrement())
+  nickname     String  @unique
+  name         String?
+  phone_number String?
+  job          Job[]
+}
